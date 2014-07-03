@@ -2,7 +2,9 @@ Bloccitoff::Application.routes.draw do
 
   devise_for :users
 
-  resources :todos
+  resources :lists do 
+    resources :todos
+  end  
 
   get 'about' => 'welcome#about'
 

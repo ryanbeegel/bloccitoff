@@ -1,0 +1,18 @@
+<h1>All To-Dos</h1>
+
+<table class="table">
+  <thead>
+    <th>Description</th>
+    <th>Days Left</th>
+    <th>Complete</th>
+  </thead>
+  <tbody>
+    <% @todos.each do |todo| %>
+    <tr>
+      <td><%= todo.body %></td>
+      <td></td>
+      <td><%= link_to "Complete", [@list, todo], method: :delete, class: "btn btn-success" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
