@@ -10,7 +10,8 @@
     <div class="container">
       <ul class="nav nav-tabs">
         <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "About", about_path %></li>
+        <li><%= link_to "My Lists", lists_path %></li>
+        <li><%= link_to "New List", new_list_path %></li>
 
         <div class="pull-right user-info">
           <% if current_user %>

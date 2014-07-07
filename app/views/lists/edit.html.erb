@@ -1,2 +1,13 @@
-<h1>Lists#edit</h1>
-<p>Find me in app/views/lists/edit.html.erb</p>
+<h1>Edit List</h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for @list do |f| %>
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: 'form-control', placeholder: "Enter list title" %>
+      </div>
+      <%= f.submit "Save", class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
