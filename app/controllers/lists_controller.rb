@@ -1,12 +1,20 @@
 class ListsController < ApplicationController
   def index
-    @lists = current_user.lists
-    #authorize @list
+    if current_user
+      @lists = current_user.lists
+      #authorize @list
+    else
+      raise Pundit::NotAuthorizedError, "You must be logged in to view list."
+    end
   end
 
   def new
-    @list = List.new
-    #authorize @list
+    if current_user
+      @list = List.new
+      #authorize @list
+    else
+      raise Pundit::NotAuthorizedError, "You must be logged in to create a new list."
+    end
   end
 
   def show
@@ -32,10 +40,22 @@ class ListsController < ApplicationController
     end
   end
 
+  def update
+    @list = List.find(params[:id])
+    #authorize @list
+
+    if @list.update
+      redirect_to @list, notice: "List was successfully edited."
+    else
+      flash[:error] = "Error editing list. Please try again."
+      render :edit
+    end
+  end
+
   def destroy
     @list = List.find(params[:id])
-
     #authorize @list
+
     if @list.destroy
       flash[:notice] = "Your list was deleted successfully."
       redirect_to lists_path

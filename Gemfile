@@ -34,3 +34,5 @@ gem 'devise'
 gem 'figaro'
 
 gem 'pundit'
+
+gem 'whenever', :require => false

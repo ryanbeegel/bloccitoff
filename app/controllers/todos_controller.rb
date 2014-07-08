@@ -21,7 +21,7 @@ class TodosController < ApplicationController
     if @todo.save
       redirect_to @list, notice: "To-do list item was successfully saved."
     else
-      flash[:error] = "Error creating to-do list item. Please try again."
+      flash[:error] = "Error creating to-do list item. Make sure that there is a minimum of 5 characters in the todo. Please try again."
       render :new
     end
   end
