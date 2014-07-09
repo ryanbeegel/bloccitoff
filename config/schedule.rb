@@ -1,3 +1,3 @@
-every 1.hour do
+every 1.day, :at => '4:30 am' do
   rake 'delete_todos'
 end

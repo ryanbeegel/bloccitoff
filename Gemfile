@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.4'
 
-group :prduction do
+group :production do
   gem 'pg'
   gem 'rails_12factor'
 end

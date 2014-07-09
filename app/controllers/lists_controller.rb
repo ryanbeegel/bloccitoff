@@ -29,8 +29,7 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = List.new(params.require(:list).permit(:title))
-    @list = current_user.lists.build(params.require(:list).permit(:title))
+    @list = current_user.lists.build(list_params)
     #authorize @list
     if @list.save
       redirect_to @list, notice: "List was saved successfully."
@@ -44,8 +43,10 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
     #authorize @list
 
-    if @list.update
-      redirect_to @list, notice: "List was successfully edited."
+    if @list.update(list_params)
+      Rails.logger.info "inside the update method"
+      Rails.logger.info ">>>>> #{@list.inspect}"
+      redirect_to @list, notice: "List was saved successfully."
     else
       flash[:error] = "Error editing list. Please try again."
       render :edit
@@ -63,5 +64,11 @@ class ListsController < ApplicationController
       flash[:error] = "There was an error deleting the list."
       render :show
     end
+  end
+
+  private 
+
+  def list_params
+    params.require(:list).permit(:title)
   end
 end
